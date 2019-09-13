@@ -4,7 +4,7 @@ class Battle{
         this.enemies = enemies;
         this.allLiving = [];
         this.turnOrder = [];
-        this.livingCounter = 0;
+        this.participants;
     }
 
     init(){
@@ -13,7 +13,6 @@ class Battle{
     }
 
     initLiving(){
-        this.livingCounter = this.party.length + this.enemies.length;
         if(this.party.length>this.enemies.length){
             for(let i = 0; i < this.party.length; i++){
                 this.allLiving.push(this.party[i]);
@@ -39,42 +38,11 @@ class Battle{
         this.initBattle();
     }
     initBattle(){
-        this.turnOrder.push(this.allLiving[this.livingCounter]);
-        this.livingCounter++;
-        this.initRecursion();
-        
-        // for(let i = 0; i < this.allLiving.length; i++){
-        //     if(i == 0){
-        //         this.turnOrder.push(this.allLiving[0]);
-        //     }
-        //     else{
-        //         for(let j = 0; j < this.turnOrder.length; j++){
-        //             if(this.allLiving[i].spd >this.turnOrder[j].spd){
-        //                 this.turnOrder.splice(j, 0, this.allLiving[i]);
-        //             }
-        //             else{
-        //                 this.turnOrder.push(this.allLiving[i]);
-        //             }
-        //         }
-        //     }
-            
-        // }
+        this.turnOrder = this.allLiving;
+        this.turnOrder.sort(function(a,b){return b.spd - a.spd});//sorts the array with anonymous function by the speed (spd) of the obj
     }
 
-    initRecursion(){
-        for(let j = 0; j < this.turnOrder.length; j++){
-            if(this.allLiving[this.livingCounter].spd >this.turnOrder[j].spd){
-                this.turnOrder.splice(j, 0, this.allLiving[i]);
-            }
-            else{
-                this.turnOrder.push(this.allLiving[this.livingCounter]);
-            }
-        }
-        if(this.livingCounter < this.allLiving.length){
-            this.initRecursion();
-        }
-        else{
-            this.livingCounter = 0;
-        }
+    encounter(){//this will test possible combat with more than 2 entities;
+
     }
 }

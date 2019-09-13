@@ -5,12 +5,15 @@ class Character{
         this.xp = xp;
         this.reqXp = 30;
         this.hp = hp;
+        this.maxHp = hp;
         this.mp = mp;
+        this.maxMp = mp;
         this.atk = atk;
         this.def = def;
         this.spd =spd;
         this.sprites = sprites;//this is an array to store battleSprites
         this.abilities = [];
+        this.isAlive = true;
     }
 
     levelUp(){
