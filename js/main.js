@@ -7,4 +7,4 @@ let testEG = [];
 testEG.push(testE);
 
 let battle = new Battle(testP,testEG);
-battle.initBattle();
+battle.init();
