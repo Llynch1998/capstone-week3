@@ -1,5 +1,5 @@
 class Enemy{
-    constructor(hp,atk,def,spd,mp,sprites,name,lvl){
+    constructor(hp,atk,def,spd,mp,sprites,name,lvl,abilities){
         this.name = name;
         this.lvl;
         this.hp = hp;
@@ -11,10 +11,13 @@ class Enemy{
         this.maxMp = mp;
         this.sprites = sprites;//this is to store battleSprites
         this.isAlive = true;
-        this.abilities = [];
+        this.abilities = abilities;
     }
     
     giveXP(){
-        
+        return this.lvl * (this.atk/2);
+    }
+    attack(){
+        return 
     }
 }
