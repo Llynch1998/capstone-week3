@@ -47,31 +47,35 @@ class Battle{
     }
 
     encounter(attack, target){//this will test possible combat with more than 2 entities;
-        if(this.turnOrder[this.turnCounter] instanceof Character){
-            console.log("Character");
-            console.log(target.hp);
-            target.hp -= attack.power;
-            console.log(target.hp);
-            this.turnCounter++;
-            if(this.turnCounter == this.turnOrder.length){
-                this.turnCounter = 0;
+        if(this.turnOrder[this.turnCounter].hp > 0){
+            if(this.turnOrder[this.turnCounter] instanceof Character){
+                console.log("Character");
+                console.log(target.hp);
+                target.hp -= attack.power;
+                console.log(target.hp);
+                
+                this.turnCounter++;
+                if(this.turnCounter == this.turnOrder.length){
+                    this.turnCounter = 0;
+                }
+            }
+            else if(this.turnOrder[this.turnCounter] instanceof Enemy){
+                console.log("Enemy");
+                console.log(target.hp);
+                target.hp -= attack.power;
+                console.log(target.hp);
+                this.turnCounter++;
+                if(this.turnCounter == this.turnOrder.length){
+                    this.turnCounter = 0;
+                }
+            }
+            if(this.turnOrder[this.turnCounter] instanceof Enemy){
+                this.encounter(this.turnOrder[this.turnCounter].abilities[Math.floor(Math.random() * this.turnOrder[this.turnCounter].abilities.length)],this.party[Math.floor(Math.random() * this.party.length)]);
+            }
+            else{
+                
             }
         }
-        else if(this.turnOrder[this.turnCounter] instanceof Enemy){
-            console.log("Enemy");
-            console.log(target.hp);
-            target.hp -= attack.power;
-            console.log(target.hp);
-            this.turnCounter++;
-            if(this.turnCounter == this.turnOrder.length){
-                this.turnCounter = 0;
-            }
-        }
-        if(this.turnOrder[this.turnCounter] instanceof Enemy){
-            this.encounter(this.turnOrder[this.turnCounter].abilities[Math.floor(Math.random() * this.turnOrder[this.turnCounter].abilities.length)],this.party[Math.floor(Math.random() * this.party.length)]);
-        }
-        else{
-            
-        }
+        
     }
 }

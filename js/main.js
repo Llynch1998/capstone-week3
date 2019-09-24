@@ -12,6 +12,7 @@ let enemyParty = [];
 let battle;
 let goblinImg,kingSlimeImg,chickenImg,skelboiImg,slimeImg;
 let downImg,rightImg,leftImg,upImg;
+let mainSprite,warSprite,SorcSprite;
 let inCombat = false;
 let chance = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,,2,2,2,2,2,2,2,2,,3,3,3,3,3,3,3,3,,4,4,4,4,4,4,4,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 //hp,atk,def,spd,mp,sprites,name,lvl,abilities
@@ -62,6 +63,9 @@ let Chicken = {
     //name, type, uses, cost, power
 }
 let player;
+let main;
+let war;
+let sorc;
 
 function preload(){//loads images for use later
     //enemies
@@ -76,8 +80,10 @@ function preload(){//loads images for use later
     leftImg = loadImage("./assets/left.png");
     upImg = loadImage("./assets/up.png");
 
-    //Part Fight Sprites
-
+    //Party Fight Sprites
+    mainSprite = loadImage("./assets/Main.png");
+    warSprite = loadImage("./assets/Warrior.png");
+    SorcSprite = loadImage("./assets/Sorcerer.png");
     //map tiles
 }
 
@@ -92,7 +98,12 @@ function setup(){
         }
     }//creates tiles
     player = new Player([downImg,rightImg,leftImg,upImg],0,240,320,size)
-
+    main = new Character(30,10,10,15,10,mainSprite,"Main Character",0,1);
+    war = new Character(40,5,15,10,5,warSprite,"Warrior",0,1);
+    sorc = new Character(20,10,10,15,10,mainSprite,"Sorcerer",0,1);
+    party.push(main);
+    party.push(war);
+    party.push(sorc);
 }
 
 function draw(){
@@ -109,6 +120,8 @@ function draw(){
         else{
             moveCount = 0;
             walkLeft = false;
+            encounter = random(chance);
+            checkEncounter();
         }
     }
     if(walkRight){
@@ -124,6 +137,8 @@ function draw(){
         else{
             moveCount = 0;
             walkRight = false;
+            encounter = random(chance);
+            checkEncounter();
         }
     }
     if(walkUp){
@@ -138,6 +153,8 @@ function draw(){
         else{
             moveCount = 0;
             walkUp = false;
+            encounter = random(chance);
+            checkEncounter();
         }
     }
     if(walkDown){
@@ -153,6 +170,8 @@ function draw(){
         else{
             moveCount = 0;
             walkDown = false;
+            encounter = random(chance);
+            checkEncounter();
             console.log(moveCount);
         }
     }
@@ -174,4 +193,31 @@ function keyPressed(){
 	if(keyCode === DOWN_ARROW || keyCode === 83){//move down
 		walkDown = true;
 	}
+}
+
+function checkEncounter(){
+    if(encounter == 1){
+        //goblin //hp,atk,def,spd,mp,sprites,name,lvl,abilities
+        let gobbo1 = new Enemy(goblin.hp, goblin.atk,goblin.def,goblin.spd,goblin.mp,goblinImg,goblin.name + " A",1,goblin.abilities);
+        let gobbo2 = new Enemy(goblin.hp, goblin.atk,goblin.def,goblin.spd,goblin.mp,goblinImg,goblin.name + " B",1,goblin.abilities);
+        enemyParty[0] = gobbo1;
+        enemyParty[1] = gobbo2;
+        battle = new Battle(party,enemyParty);
+        battle.initBattle();
+    }
+    else if(encounter == 2){
+        //skele
+    }
+    else if(encounter == 3){
+        //slime
+    }
+    else if(encounter == 4){
+        //chimken
+    }
+    else if(encounter == 5){
+        //kingslime
+    }
+    else{
+
+    }
 }
