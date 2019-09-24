@@ -20,4 +20,7 @@ class Enemy{
     attack(){
         return 
     }
+    display(){
+        
+    }
 }
