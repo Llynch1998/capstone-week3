@@ -1,7 +1,17 @@
 let attacks = [];
 let punch = new Attack("Punch","Physical",100,0,5);
 attacks.push(punch);
-
+let tiles = []; // array for tiles
+for (let j = 0; j < rows; j++) { //nested loop to create tiles
+    for (let i = 0; i < columns; i++) {
+        
+        tiles.push(t = new Tile(i * size, j*size, size));
+        
+    
+    }
+    
+    
+}//creates tiles with grass image
 
 
 let testC = new Character(50,5,3,10,10,0,"Wyatt",0,1);
