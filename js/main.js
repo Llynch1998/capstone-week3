@@ -61,8 +61,7 @@ let Chicken = {
     new Attack("Tail Slap","Physical",10,0,20)]
     //name, type, uses, cost, power
 }
-
-let player = new Player([upImg,downImg,leftImg,rightImg],0,240,320,size)
+let player;
 
 function preload(){//loads images for use later
     //enemies
@@ -92,12 +91,14 @@ function setup(){
             tiles.push(t = new Tile(i * size, j*size, size));
         }
     }//creates tiles
+    player = new Player([downImg,rightImg,leftImg,upImg],0,240,320,size)
 
 }
 
 function draw(){
     background(255);
     if(walkLeft){
+        player.moveLeft();
         if(player.x == 0){
             return
         }
@@ -111,7 +112,9 @@ function draw(){
         }
     }
     if(walkRight){
+        player.moveRight();
         if(player.x == canvas.width){
+            
             return
         }
         else if(moveCount <40){
@@ -124,6 +127,7 @@ function draw(){
         }
     }
     if(walkUp){
+        player.moveUp();
         if(player.y == 0){
             return
         }
@@ -137,6 +141,7 @@ function draw(){
         }
     }
     if(walkDown){
+        player.moveDown();
         if(player.y == canvas.height){
             return
         }
@@ -151,7 +156,8 @@ function draw(){
             console.log(moveCount);
         }
     }
-    image(goblinImg,player.x,player.y,40,40);
+    player.displaySprite();
+    // image(goblinImg,player.x,player.y,40,40);
 }
 
 function keyPressed(){

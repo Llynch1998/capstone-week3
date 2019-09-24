@@ -10,19 +10,15 @@ class Player{
         this.currentImage = this.mapSprites[0];
     }
     moveUp(){
-		this.column -= 1;
 		this.currentImage = this.mapSprites[3];
 	}
 	moveDown(){
-		this.column += 1;
 		this.currentImage = this.mapSprites[0];
 	}
 	moveRight(){
-		this.row += 1;
         this.currentImage = this.mapSprites[1];
 	}
 	moveLeft(){
-		this.row -= 1;
 		this.currentImage = this.mapSprites[2];
     }
     position(){ // resets x and y based on column or row
