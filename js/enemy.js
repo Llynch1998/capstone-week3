@@ -20,7 +20,7 @@ class Enemy{
     attack(){
         return 
     }
-    display(){
-        
+    display(x,y,width,height){
+        image(this.sprites,x,y,width,height);
     }
 }

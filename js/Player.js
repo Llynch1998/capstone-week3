@@ -7,7 +7,7 @@ class Player{
         this.size = size;
         this.row = this.y/this.size
         this.column = this.x/this.size
-        this.currentImage;
+        this.currentImage = this.mapSprites[0];
     }
     moveUp(){
 		this.column -= 1;
@@ -30,6 +30,6 @@ class Player{
 		this.y = this.column * this.size;
     }
     displaySprite(){
-		image(this.animation[this.frame][this.indexSlot],this.x,this.y)
+		image(this.currentImage,this.x,this.y,this.size,this.size);
 	}
 }

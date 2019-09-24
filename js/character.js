@@ -31,4 +31,7 @@ class Character{
             }
         }
     }
+    display(x,y,width,height){
+        image(this.sprites,x,y,width,height);
+    }
 }
