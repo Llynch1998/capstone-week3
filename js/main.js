@@ -17,6 +17,7 @@ let chance = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,,2,2,2,2,2,2,2,2,,3,3,3,3,3,3,3,3,
 //hp,atk,def,spd,mp,sprites,name,lvl,abilities
 let encounter = 0;
 let moveCount = 0;
+let moving = false;
 let goblin = {
     hp:20,
     atk:5,
@@ -95,15 +96,68 @@ function setup(){
 }
 
 function draw(){
+    background(255);
     if(walkLeft){
-        
+        if(player.x == 0){
+            return
+        }
+        else if(moveCount <40){
+            player.x -= 1;
+            moveCount++;
+        }
+        else{
+            moveCount = 0;
+            walkLeft = false;
+        }
     }
-    image(goblinImg,0,0,40,40);
+    if(walkRight){
+        if(player.x == canvas.width){
+            return
+        }
+        else if(moveCount <40){
+            player.x += 1;
+            moveCount++;
+        }
+        else{
+            moveCount = 0;
+            walkRight = false;
+        }
+    }
+    if(walkUp){
+        if(player.y == 0){
+            return
+        }
+        else if(moveCount <40){
+            player.y -= 1;
+            moveCount++;
+        }
+        else{
+            moveCount = 0;
+            walkUp = false;
+        }
+    }
+    if(walkDown){
+        if(player.y == canvas.height){
+            return
+        }
+        else if(moveCount <40){
+            player.y += 1;
+            moveCount++;
+            console.log(moveCount);
+        }
+        else{
+            moveCount = 0;
+            walkDown = false;
+            console.log(moveCount);
+        }
+    }
+    image(goblinImg,player.x,player.y,40,40);
 }
 
 function keyPressed(){
 	if(keyCode === LEFT_ARROW || keyCode === 65){//move left
-		walkLeft = true;
+        walkLeft = true;
+        
 	}
 	if(keyCode === RIGHT_ARROW || keyCode === 68){//move right
 		walkRight = true;
