@@ -1,9 +1,9 @@
-let rows = 18;
+let rows = 12;
 let columns = 16;
 let attacks = [];
 let punch = new Attack("Punch","Physical",100,0,5);
 attacks.push(punch);
-let size = 20;
+let size = 40;
 let tiles = []; // array for tiles
 
 function setup(){
