@@ -1,4 +1,5 @@
-let attacks = [];
+function setup(){
+    let attacks = [];
 let punch = new Attack("Punch","Physical",100,0,5);
 attacks.push(punch);
 let tiles = []; // array for tiles
@@ -28,3 +29,8 @@ testP.push(testC2);
 
 let battle = new Battle(testP,testEG);
 battle.init();
+}
+
+function draw(){
+    
+}
